@@ -15,9 +15,19 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tanstack/vue-table": "^8.20.5",
+    "@vueuse/core": "^12.4.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.471.0",
     "pinia": "^2.3.0",
+    "radix-vue": "^1.9.12",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul-vue": "^0.2.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "vue-star-rating": "^2.1.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
@@ -44,5 +54,6 @@
     "vite-plugin-vue-devtools": "^7.6.8",
     "vitest": "^2.1.8",
     "vue-tsc": "^2.1.10"
-  }
+  },
+  "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321"
 }
