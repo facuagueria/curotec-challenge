@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Table } from '@tanstack/vue-table'
-import type { Movie } from '@/types/Movie.ts'
+import type { MovieWithRating } from '@/types/Movie.ts'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -12,13 +12,13 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon, ArrowLeftIcon, ArrowRightIcon } from 'lucide-vue-next'
 
 interface DataTablePaginationProps {
-  table: Table<Movie>
+  table: Table<MovieWithRating>
 }
 defineProps<DataTablePaginationProps>()
 </script>
 
 <template>
-  <div class="flex items-center justify-between px-2">
+  <div class="flex items-center justify-center px-2">
     <div class="flex items-center space-x-6 lg:space-x-8">
       <div class="flex items-center space-x-2">
         <p class="text-sm font-medium">Rows per page</p>

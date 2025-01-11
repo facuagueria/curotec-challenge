@@ -1,12 +1,14 @@
 import { h } from 'vue'
 import type { ColumnDef } from '@tanstack/vue-table'
-import type { Movie } from '@/types/Movie.ts'
+import type { MovieWithRating } from '@/types/Movie.ts'
 import ColumnRating from './ColumnRating.vue'
+import DataTableColumnHeader from './DataTableColumnHeader.vue'
 
-export const columns: ColumnDef<Movie>[] = [
+export const columns: ColumnDef<MovieWithRating>[] = [
   {
     accessorKey: 'title',
-    header: () => h('div', { class: 'text-left' }, 'Title'),
+    header: ({ column }) =>
+      h(DataTableColumnHeader, { column, class: 'text-left', title: 'Title' }),
     cell: ({ row }) => {
       const title = row.getValue('title')
 
@@ -15,7 +17,7 @@ export const columns: ColumnDef<Movie>[] = [
   },
   {
     accessorKey: 'year',
-    header: () => h('div', { class: 'text-left' }, 'Year'),
+    header: ({ column }) => h(DataTableColumnHeader, { column, class: 'text-left', title: 'Year' }),
     cell: ({ row }) => {
       const year = row.getValue('year')
 
@@ -24,7 +26,8 @@ export const columns: ColumnDef<Movie>[] = [
   },
   {
     accessorKey: 'averageRating',
-    header: () => h('div', { class: 'text-left' }, 'Rating'),
+    header: ({ column }) =>
+      h(DataTableColumnHeader, { column, class: 'text-left', title: 'Rating' }),
     cell: ({ row }) => {
       const rating = row.getValue('averageRating') as number
       const totalRating = row.original.totalRating
@@ -33,6 +36,10 @@ export const columns: ColumnDef<Movie>[] = [
 
       return h('div', { class: 'text-left font-medium' }, ratingComponent)
     },
-    
+    filterFn: (row, id, filterValue) => {
+      const filterValueNumber = parseInt(filterValue)
+      const rating = row.getValue('averageRating') as number
+      return rating >= filterValueNumber && rating < filterValueNumber + 1
+    },
   },
 ]

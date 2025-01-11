@@ -5,7 +5,7 @@ import type {
   SortingState,
   VisibilityState,
 } from '@tanstack/vue-table'
-import type { Movie } from '@/types/Movie.ts'
+import type { MovieWithRating } from '@/types/Movie.ts'
 
 import {
   Table,
@@ -16,7 +16,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-// import { valueUpdater } from '@/lib/utils'
+import { valueUpdater } from '@/lib/utils'
 import {
   FlexRender,
   getCoreRowModel,
@@ -33,8 +33,8 @@ import DataTableToolbar from './DataTableToolbar.vue'
 import MovieDrawer from '../MovieDrawer.vue'
 
 interface DataTableProps {
-  columns: ColumnDef<Movie, any>[]
-  data: Movie[]
+  columns: ColumnDef<MovieWithRating, any>[]
+  data: MovieWithRating[]
 }
 const props = defineProps<DataTableProps>()
 
@@ -65,10 +65,10 @@ const table = useVueTable({
     },
   },
   enableRowSelection: true,
-  // onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
-  // onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
-  // onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
-  // onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
+  onSortingChange: (updaterOrValue) => valueUpdater(updaterOrValue, sorting),
+  onColumnFiltersChange: (updaterOrValue) => valueUpdater(updaterOrValue, columnFilters),
+  onColumnVisibilityChange: (updaterOrValue) => valueUpdater(updaterOrValue, columnVisibility),
+  onRowSelectionChange: (updaterOrValue) => valueUpdater(updaterOrValue, rowSelection),
   getCoreRowModel: getCoreRowModel(),
   getFilteredRowModel: getFilteredRowModel(),
   getPaginationRowModel: getPaginationRowModel(),
@@ -77,10 +77,10 @@ const table = useVueTable({
   getFacetedUniqueValues: getFacetedUniqueValues(),
 })
 
-const movieSelected = ref<Movie | null>(null)
+const movieSelected = ref<MovieWithRating | null>(null)
 const openDrawer = ref(false)
 
-const handleRowClick = (row: Movie) => {
+const handleRowClick = (row: MovieWithRating) => {
   openDrawer.value = true
   movieSelected.value = row
 }
@@ -88,7 +88,6 @@ const handleRowClick = (row: Movie) => {
 
 <template>
   <div>
-    
     <div class="space-y-4">
       <DataTableToolbar :table="table" />
       <div class="rounded-md border">
