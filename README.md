@@ -2,6 +2,9 @@
 
 The application includes a dashboard with statistics and an interactive movie list.
 
+I chose using a static dataset for this challenge. I'm not using any API or external service.
+If I had selected an external service, I would have used SWRV (https://docs-swrv.netlify.app/) for caching and data fetching.
+
 ## Core Technologies
 
 - Vue 3 with Composition API
@@ -61,6 +64,7 @@ src/
 
 ### Optimizations
 
+- Improve reusability of shadcn-vuecomponents
 - Improve performance with lazy loading
 - Implement data caching
 - Optimize images and assets
