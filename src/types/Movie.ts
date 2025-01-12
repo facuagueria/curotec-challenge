@@ -1,3 +1,6 @@
+/**
+ * Base movie interface containing core movie properties
+ */
 export interface Movie {
   title: string
   year: number
@@ -10,7 +13,11 @@ export interface Movie {
   thumbnail_height?: number
 }
 
+/**
+ * Extended movie interface that includes rating information
+ * Used throughout the application for displaying and managing movie ratings
+ */
 export interface MovieWithRating extends Movie {
-  averageRating: number
-  totalRating: number
+  averageRating: number // Average rating out of 10
+  totalRating: number // Total number of ratings received
 }
