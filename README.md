@@ -47,35 +47,45 @@ src/
 ## TODO
 
 ### Testing Improvements
-- Implement E2E tests with Playwright
-- Increase unit test coverage
+
+- Increase E2E tests coverage with Playwright
+- Increase unit test coverage with Vitest
 - Add integration tests for core components
 
 ### Future Features
+
 - Implement user authentication
 - Add movie comment system
 - Integrate advanced search with multiple filters
 - Add multi-language support
 
 ### Optimizations
+
 - Improve performance with lazy loading
 - Implement data caching
 - Optimize images and assets
 - Add component documentation with Storybook
 
+### Errors
+
+- Handling and showing error properly
+
 ## Project Setup
 
 1. Install dependencies:
+
 ```sh
 pnpm install
 ```
 
 2. Start development server:
+
 ```sh
 pnpm dev
 ```
 
 3. Build for production:
+
 ```sh
 pnpm build
 ```
