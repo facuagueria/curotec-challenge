@@ -1,17 +1,20 @@
+// Store for managing dashboard state
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { MovieService } from '@/services/MovieService'
 import { MovieRepository } from '@/repositories/MovieRepository'
 
+// Initialize movie service
 const movieService = new MovieService(new MovieRepository())
 
+// Types for statistics
 type MoviesByRating = {
   rating: number
   count: number
 }
 
 type MoviesByYear = {
-  year: number
+  year: number 
   count: number
 }
 
@@ -21,7 +24,9 @@ type Stats = {
   moviesByYear: MoviesByYear[]
 }
 
+// Define store
 export const useDashboardStore = defineStore('dashboard', () => {
+  // Initial state
   const stats = ref<Stats>({
     totalMovies: 0,
     moviesByRating: [],
@@ -30,7 +35,9 @@ export const useDashboardStore = defineStore('dashboard', () => {
 
   const isLoading = ref(false)
 
+  // Get movies grouped by rating
   const getMoviesByRating = async () => {
+    // Reduce movies to an object with rating counts
     const moviesByRating = (await movieService.getMovies()).reduce(
       (acc, movie) => {
         const rating = Math.floor(movie.averageRating)
@@ -40,13 +47,16 @@ export const useDashboardStore = defineStore('dashboard', () => {
       {} as Record<number, number>,
     )
 
+    // Convert to array of objects
     return Object.entries(moviesByRating).map(([rating, count]) => ({
       rating: parseInt(rating),
       count,
     }))
   }
 
+  // Get movies grouped by year
   const getMoviesByYear = async () => {
+    // Similar to getMoviesByRating but grouping by year
     const moviesByYear = (await movieService.getMovies()).reduce(
       (acc, movie) => {
         const year = movie.year
@@ -62,9 +72,10 @@ export const useDashboardStore = defineStore('dashboard', () => {
     }))
   }
 
+  // Get all statistics
   async function getStats() {
     isLoading.value = true
-    // simulate an API call
+    // Simulate API delay
     setTimeout(async () => {
       stats.value.totalMovies = (await movieService.getMovies()).length
       stats.value.moviesByRating = await getMoviesByRating()
