@@ -27,10 +27,10 @@ export const useDashboardStore = defineStore('dashboard', () => {
     setTimeout(async () => {
       stats.value.totalMovies = (await movieService.getMovies()).length
 
-      // search movies by rating, taking into account that rating is between 1 and 10
       const moviesByRating = (await movieService.getMovies()).reduce(
         (acc, movie) => {
-          acc[movie.averageRating] = (acc[movie.averageRating] || 0) + 1
+          const rating = Math.floor(movie.averageRating)
+          acc[rating] = (acc[rating] || 0) + 1
           return acc
         },
         {} as Record<number, number>,
