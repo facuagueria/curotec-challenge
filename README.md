@@ -5,6 +5,8 @@ The application includes a dashboard with statistics and an interactive movie li
 I chose using a static dataset for this challenge. I'm not using any API or external service.
 If I had selected an external service, I would have used SWRV (https://docs-swrv.netlify.app/) for caching and data fetching.
 
+Movies aclaration: Every time you click on a row movie, the movie details are shown in a Drawer component and you can rate the movie and it will count as a new vote (simulating a new user voting).
+
 ## Core Technologies
 
 - Vue 3 with Composition API
