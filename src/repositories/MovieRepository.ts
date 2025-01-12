@@ -23,17 +23,20 @@ export class MovieRepository {
   }
 
   // At this point, we should have the movies in the localStorage
-  async getMovieByTitle(title: string): Promise<MovieWithRating | null> {
+  async getMovieByField(
+    field: keyof MovieWithRating,
+    value: MovieWithRating[keyof MovieWithRating],
+  ): Promise<MovieWithRating | null> {
     const movies = await this.getMovies()
 
-    const movie = movies.find((movie: MovieWithRating) => movie.title === title)
+    const movie = movies.find((movie: MovieWithRating) => movie[field] === value)
 
     return movie ?? null
   }
 
   // At this point, we should have the movies in the localStorage
   async rateMovie(title: string, rating: number): Promise<void> {
-    const movie = await this.getMovieByTitle(title)
+    const movie = await this.getMovieByField('title', title)
 
     if (movie) {
       const newMovie = calculateNewRating(movie, rating)
