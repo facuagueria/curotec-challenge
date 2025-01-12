@@ -5,17 +5,20 @@ import { MovieRepository } from '@/repositories/MovieRepository'
 
 const movieService = new MovieService(new MovieRepository())
 
-type MovieStats = {
-  rating?: number
-  year?: number
+type MoviesByRating = {
+  rating: number
   count: number
 }
 
+type MoviesByYear = {
+  year: number
+  count: number
+}
 
 type Stats = {
   totalMovies: number
-  moviesByRating: MovieStats[]
-  moviesByYear: MovieStats[]
+  moviesByRating: MoviesByRating[]
+  moviesByYear: MoviesByYear[]
 }
 
 export const useDashboardStore = defineStore('dashboard', () => {
