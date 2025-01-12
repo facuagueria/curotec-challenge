@@ -1,15 +1,14 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { Movie } from '@/types/Movie'
+import type { MovieWithRating } from '@/types/Movie'
 import { MovieService } from '@/services/MovieService'
 import { MovieRepository } from '@/repositories/MovieRepository'
 
 const movieService = new MovieService(new MovieRepository())
 
 export const useMoviesStore = defineStore('movies', () => {
-  const movies = ref<Movie[]>([])
+  const movies = ref<MovieWithRating[]>([])
   const isLoading = ref(false)
-
 
   async function getMovies() {
     isLoading.value = true
@@ -20,7 +19,6 @@ export const useMoviesStore = defineStore('movies', () => {
     }, 2000)
   }
 
-
   async function rateMovie(title: string, rating: number) {
     // simulate an API call
     setTimeout(async () => {
@@ -30,4 +28,3 @@ export const useMoviesStore = defineStore('movies', () => {
 
   return { movies, isLoading, getMovies, rateMovie }
 })
-
