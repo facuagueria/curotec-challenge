@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useDashboard } from '@/composables/useDashboard'
-import AppLoader from '@/components/ui/loader/AppLoader.vue'
+import AppLoader from '@/components/App/AppLoader.vue'
 import TotalMovies from '@/components/dashboard/TotalMovies.vue'
 import MoviesByRating from '@/components/dashboard/MoviesByRating.vue'
 

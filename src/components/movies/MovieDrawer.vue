@@ -10,7 +10,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
-import AppRater from '@/components/ui/rating/AppRater.vue'
+import AppRater from '@/components/App/AppRater.vue'
 import type { Movie } from '@/types/Movie'
 
 import { useMovies } from '@/composables/useMovies'
@@ -35,7 +35,6 @@ const handleRateMovie = () => {
       title: 'Please rate the movie',
       description: 'You must rate the movie between 1 and 10',
       variant: 'destructive',
-      
     })
     return
   }
