@@ -15,10 +15,11 @@ Movies aclaration: Every time you click on a row movie, the movie details are sh
 - Vite
 - Pinia (state management)
 - Vue Router
-- Chart.js for visualizations
+- Chart.js for visualizations (https://vue-chartjs.org/guide/)
 - Vitest for unit testing
 - Playwright for E2E testing
-- shadcn-vue for UI components
+- shadcn-vue for UI components (https://www.shadcn-vue.com/)
+- Tanstack Table (https://tanstack.com/table/latest)
 
 ## Project Structure
 
